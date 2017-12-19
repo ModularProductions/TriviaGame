@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>  
+  <title>Horror Night Trivia</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Horror Movie Trivia Game">
+  <meta name="author" content="MTH">
+  <meta name="keywords" content="">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <!-- <link rel="stylesheet" href="assets/css/typeplate.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/stylesheet.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="wrap">
+    <div class="container">
+      <div id="playArea">
+        <h1>Horror Night Trivia</h1>
+        <div id="numbers">
+          <p id="timeRemaining">Time remaining: 7 seconds</p>
+          <p id="questionCount">questionCount</p>
+        </div>
+        <p id="currentQuestion">What question is coming up next?</p>
+        <div id="choiceArea">
+          <div id="choice1" class="choice">
+            <div class="result"></div>
+            <p>answer choice 1</p>
+          </div> <!-- choice1 -->
+          <div id="choice2" class="choice">
+            <div class="result"></div>
+            <p>answer choice 2</p>
+          </div> <!-- choice2 -->
+          <div id="choice3" class="choice">
+            <div class="result"></div>
+            <p>answer choice 3</p>
+          </div> <!-- choice3 -->
+          <div id="choice4" class="choice">
+            <div class="result"></div>
+            <p>answer choice 4</p>
+          </div> <!-- choice4 -->
+          <p id="funFact">Here's where a fun fact about the question goes! It could be a few lines long, so make sure there's room!</p>
+        </div> <!-- choiceArea -->
+        <div id="flavorImage">
+        </div>
+        <div id="score">
+        </div>
+      </div>
+    </div> <!-- container -->
+  </div> <!-- wrap -->
+  <footer>
+  </footer>
+  
+
+
+
+  <!-- ...... jQuery ...... -->
+  <script 
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>  <!-- jQuery minified CDN-->
+
+  <!-- ...... JavaScript ...... -->
+  <script src="assets/js/questions.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>

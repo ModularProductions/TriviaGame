@@ -1,0 +1,174 @@
+/* fresh stylesheet */
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 100%;
+  line-height: 150%;
+  margin: 0;
+  color: #ddd;
+  min-width: 500px;
+}
+  
+body {
+  background-color: #444;
+  padding: 30px;
+  overflow: auto;
+}
+
+#playArea {
+  background-color: #222;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  overflow: auto;
+}
+
+#numbers {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#timeRemaining {
+
+}
+
+#questionCount {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+#currentQuestion {
+
+}
+
+#choiceArea {
+  display: inline-block;
+}
+
+.choice {
+  border: 1px red solid;
+  margin: 10px;
+  overflow: auto;
+  position: relative;
+  min-height: 60px;
+}
+
+.choice p {
+  margin: 5px 5px 5px 80px;
+  font-size: 125%;
+  padding: 10px;
+}
+
+.result {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 50px;
+  width: 75px;
+  margin-top: 5px;
+  background-color: blue;
+}
+
+#flavorImage {
+  width: 100%;
+  background-color: blue;
+  border: solid 1px red;
+  clear: both;
+}
+
+p {
+  font-size: 150%;
+}
+
+a {
+  
+}
+
+h1 {
+  font-family: 'Nosifer', cursive;
+  font-size: 30px;
+  color: #ddd;
+  margin: 15px;
+}
+
+h2 {
+
+}
+
+ul {
+
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+input[type=text], input[type=email], textarea {
+
+}
+
+input[type=submit] {
+
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#content {
+  padding-bottom: 70px; /* your footer height */
+}
+
+header {
+
+}
+
+nav {
+
+}
+
+section {
+
+}
+
+footer {
+  height: 70px; /* your footer height */
+  margin-top: -70px; /* your footer height as negative amount */
+  overflow: hidden;
+}
+
+/* Tablet Portrait */
+@media screen and (min-width: 600px) {
+  #flavorImage {
+    float: right;
+    width: 200px;
+    height: 300px;
+  }
+}
+
+#choiceArea {
+
+}
+
+/* Tablet Landscape */
+@media screen and (min-width: 900px) {
+
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+
+}
+
+/* Big Desktop */
+@media screen and (min-width: 1800px) {
+
+}
+
