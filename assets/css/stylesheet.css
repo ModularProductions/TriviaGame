@@ -82,6 +82,20 @@ body {
   clear: both;
 }
 
+#newGame {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 200px;
+}
+
+.hidden {
+  visibility: hidden;
+  position: fixed;
+  top: -500px;
+}
+
 p {
   font-size: 150%;
 }
