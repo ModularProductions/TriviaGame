@@ -23,12 +23,15 @@
     <div class="container">
       <div id="playArea">
         <h1>Horror Night Trivia</h1>
-        <div id="numbers">
-          <p id="timeRemaining">Time remaining: 7 seconds</p>
+        <div id="newGame">
+          <p>Click anywhere to start a new game!</p>
+        </div>
+        <div id="numbers" class="hidden">
+          <p id="timeRemaining"><span id="countdown"></span></p>
           <p id="questionCount">questionCount</p>
         </div>
-        <p id="currentQuestion">What question is coming up next?</p>
-        <div id="choiceArea">
+        <p id="currentQuestion" class="hidden">What question is coming up next?</p>
+        <div id="choiceArea" class="hidden">
           <div id="choice1" class="choice">
             <div class="result"></div>
             <p>answer choice 1</p>
@@ -47,11 +50,9 @@
           </div> <!-- choice4 -->
           <p id="funFact">Here's where a fun fact about the question goes! It could be a few lines long, so make sure there's room!</p>
         </div> <!-- choiceArea -->
-        <div id="flavorImage">
+        <div id="flavorImage" class="hidden">
         </div>
-        <div id="score">
-        </div>
-      </div>
+      </div> <!-- playArea -->
     </div> <!-- container -->
   </div> <!-- wrap -->
   <footer>
@@ -61,12 +62,14 @@
 
 
   <!-- ...... jQuery ...... -->
-  <script 
+  <!-- <script 
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>  <!-- jQuery minified CDN-->
+    crossorigin="anonymous"></script>  jQuery minified CDN -->
 
   <!-- ...... JavaScript ...... -->
+
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
   <script src="assets/js/questions.js"></script>
   <script src="assets/js/app.js"></script>
 

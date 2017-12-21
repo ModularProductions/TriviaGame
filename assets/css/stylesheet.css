@@ -65,14 +65,24 @@ body {
   padding: 10px;
 }
 
-.result {
+.incorrectResult {
   position: absolute;
   top: 0px;
   left: 0px;
   height: 50px;
   width: 75px;
   margin-top: 5px;
-  background-color: blue;
+  background-color: red;
+}
+
+.correctResult {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 50px;
+  width: 75px;
+  margin-top: 5px;
+  background-color: green;
 }
 
 #flavorImage {
@@ -83,11 +93,12 @@ body {
 }
 
 #newGame {
-  position: fixed;
-  left: 50%;
-  top: 50%;
+  margin: 30px auto;
   width: 300px;
   height: 200px;
+  background-color: black;
+  border: 1px solid red;
+  padding: 60px;
 }
 
 .hidden {
