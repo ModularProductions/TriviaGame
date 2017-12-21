@@ -8,7 +8,7 @@ html, body {
   box-sizing: border-box;
   font-size: 16px;
   height: 100%;
-  line-height: 150%;
+  line-height: 175%;
   margin: 0;
   color: #ddd;
   min-width: 500px;
@@ -26,6 +26,7 @@ body {
   text-align: center;
   padding: 20px;
   overflow: auto;
+  min-height: 600px;
 }
 
 #numbers {
@@ -44,11 +45,14 @@ body {
 }
 
 #currentQuestion {
-
+  padding: 15px;
+  font-size: 24px;
 }
 
 #choiceArea {
   display: inline-block;
+  width: 60%;
+  min-width: 400px;
 }
 
 .choice {
@@ -60,7 +64,7 @@ body {
 }
 
 .choice p {
-  margin: 5px 5px 5px 80px;
+  margin: 5px 80px 5px 80px;
   font-size: 125%;
   padding: 10px;
 }
@@ -86,7 +90,7 @@ body {
 }
 
 #flavorImage {
-  width: 100%;
+  margin: 10px;
   background-color: blue;
   border: solid 1px red;
   clear: both;
@@ -173,8 +177,7 @@ footer {
 @media screen and (min-width: 600px) {
   #flavorImage {
     float: right;
-    width: 200px;
-    height: 300px;
+    width: 30%;
   }
 }
 

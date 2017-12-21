@@ -8,10 +8,10 @@
   var questionsCorrect;
   var intervalId;
   var timeLimit;
+  var answerPicked;
 
   function answerDecrement() {
     timeLimit--;
-    // console.log("timeLimit", timeLimit);
     $("#timeRemaining").text("Time remaining: " + timeLimit + " seconds!");
     if (timeLimit === 0) {
       answerTimeUp();
@@ -26,13 +26,11 @@
   function answerTimeUp() {
     console.log("executing answerTimeUp()");
     clearInterval(intervalId);
-    wasAnswered = "no";
     endOfQuestion();
   };
 
   function roundDecrement() {
     timeLimit--;
-    // console.log("timeLimit", timeLimit);
     $("#timeRemaining").text("Next question in " + timeLimit + " seconds!");
     if (timeLimit === 0) {
       roundTimeUp();
@@ -50,31 +48,14 @@
     playRound();
   };
 
-  // function pickAnswer() {
-  //   clearInterval(intervalId);
-  // }
-
-
-    
   function refreshDisplay(currentQuestion) {
     console.log("refreshDisplay() executing");
     $("#currentQuestion").text(currentQuestion.question);
     $("#questionCount").text(questionsCorrect + " / " + questionsAsked);
-    $("#choice1 p").text(currentQuestion.choice1);
-    $("#choice2 p").text(currentQuestion.choice2);
-    $("#choice3 p").text(currentQuestion.choice3);
-    $("#choice4 p").text(currentQuestion.choice4);
-  };
-
-  // function checkVars(location) {
-    // console.log(location, "  usedQuestions: ", usedQuestions);
-    // console.log(location, "  currentQuestion: ", currentQuestion);
-    // console.log("");
-  // };
+  }
 
   function pickQuestion() {
     qIndex = (Math.floor(Math.random() * questions.length));
-    // console.log("inside pickQuestion(), before IF, qIndex: ", qIndex);
     if (usedQuestions.indexOf(qIndex) === -1) {
       usedQuestions.push(qIndex);
       console.log("adding new qIndex to usedQuestions[]")
@@ -84,8 +65,6 @@
       console.log("rejecting new qIndex, executing pickQuestion() to find another");
       pickQuestion();
     };
-    // checkVars("end of pickQuestion()");
-    // console.log("end of pickQuestion() qIndex: ", qIndex);
     return qIndex;
   };
   
@@ -93,42 +72,49 @@
   function newGameScreen() {
     console.log("newGameScreen() executing");
     $("#newGame").toggleClass("hidden");
-    $("#choiceArea").toggleClass("hidden");
-    $("#flavorImage").toggleClass("hidden");
-    $("#currentQuestion").toggleClass("hidden");
     $("#numbers").toggleClass("hidden");
   }
   
-  function askQuestion() {
+  function askQuestion(currentQuestion) {
     console.log("askQuestion() executing");
+    $("#currentQuestion").remove();
+    $("#choiceArea").remove();
     currentQuestion = questions[pickQuestion()];
-    refreshDisplay(currentQuestion);
+    var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+currentQuestion.choice1+"</p>");
+    var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+currentQuestion.choice2+"</p>");
+    var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+currentQuestion.choice3+"</p>");
+    var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+currentQuestion.choice4+"</p>");
+
+    $("#playArea").append("<p id='currentQuestion'>" + currentQuestion.question);
+    $("#playArea").append("<div id='choiceArea'>");
+    $("#choiceArea").append(c1, c2, c3, c4);
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].pic1+".jpg' alt='pic1.jpg'>");
     questionsAsked++;
+    answerPicked = false;
+    timeLimit = 7;
+    answerTimer();
   };
   
   function pickAnswer() {
     console.log("pickAnswer() executing, this: ", this);
-    // console.log("this.id: ", this.id);
-    // console.log("qIndex: ", qIndex);
-    // console.log('questions', questions)
-    // console.log("questions[qIndex].answer: ", questions[qIndex].answer);
-    if (this.id === questions[qIndex].answer) {
-      wasAnswered = "correct";
-    } else {
-      wasAnswered = "incorrect";
-    };
-    endOfQuestion();
+    answerPicked = this.id;
+    $(".choice").off("click", pickAnswer);
+    endOfQuestion(answerPicked);
   };
 
-  function endOfQuestion() {
+  function endOfQuestion(answerPicked) {
     console.log("endOfQuestion() executing");
-    if (wasAnswered === "no") {
-      console.log("Didn't answer in time!");
-    } else if (wasAnswered === "correct") {
-      console.log("Correct answer!");
+    $(".choice").off("click", pickAnswer);
+    if (answerPicked === questions[qIndex].answer) {
+      $("#" + questions[qIndex].answer).append("<div class='correctResult'>");
+      questionsCorrect++;
     } else {
-      console.log("Bad answer!");
-    }
+      $("#" + questions[qIndex].answer).append("<div class='incorrectResult'>");
+    };
+    $(".flavorImage").remove();
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].pic2+".jpg' alt='pic2.jpg'>");
+    $("#choiceArea").append("<p class='funFact'>" + questions[qIndex].funFact);
+    $("#questionCount").text(questionsCorrect + " / " + questionsAsked);
     clearInterval(intervalId);
     timeLimit = 10;
     roundTimer();
@@ -136,13 +122,10 @@
 
   function playRound() {
     console.log("playRound() executing");
-    if (questionsAsked < 10) {
+    if (questionsAsked < questionLimit) {
       console.log("questionsAsked: ", questionsAsked);
-      var wasAnswered = "";
       var wasCorrect = "";
-      askQuestion();
-      timeLimit = 7;
-      answerTimer();
+      askQuestion(qIndex);
       $(".choice").on("click", pickAnswer);
     }
   };
