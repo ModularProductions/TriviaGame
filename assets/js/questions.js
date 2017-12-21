@@ -8,20 +8,18 @@ var questions = [
     choice4 : "Jason Momoa",
     answer : "choice2",
     funFact : "In addition to his work as Jason in four Ft13 movies, Kane also did stunts as Leatherface in 'The Texas Chainsaw Massacre III', and played Freddy Krueger's gloved hand at the end of 'Jason Goes To Hell: The Final Friday'.",
-    pic1 : "",
-    pic2 : ""
+    image : "jason",
   },
 
   {
-    question : "What was the first horror film to be nominated for an Academy Award for Best Picture?",
+    question : "What was the first horror film to be nominated for an Academy Award for Best picture?",
     choice1 : "Jaws",
     choice2 : "Psycho",
     choice3 : "The Omen",
     choice4 : "The Exorcist",
     answer : "choice4",
     funFact : "'The Exorcist' earned 10 Oscar nominations in 1975, including a Best Supporting Acress nod for 15-year-old Linda Blair.",
-    pic1 : "",
-    pic2 : ""
+    image : "horrorAcademy",
   },
 
   {
@@ -32,8 +30,7 @@ var questions = [
     choice4 : "Son of Sam",
     answer : "choice3",
     funFact : "Although Ed Gein decorated his farmhouse in body parts, he only admitted to two murders, and a whole lot of graverobbing.",
-    pic1 : "",
-    pic2 : ""
+    image : "killerInspiration",
   },
 
   {
@@ -44,8 +41,7 @@ var questions = [
     choice4 : "pioneering stop-motion animation",
     answer : "choice4",
     funFact : "The 2001 animated film 'Monsters, Inc.' pays tribute by including a sushi restaurant called Harryhausen's.",
-    pic1 : "",
-    pic2 : ""
+    image : "harryhausen",
   },
 
   {
@@ -56,8 +52,7 @@ var questions = [
     choice4 : "Vlad Tepes",
     answer : "choice4",
     funFact : "Vlad (the Impaler) Tepes was ruler of Wallachia after his father, and used brutal tactics in his struggle against the Ottoman Empire. After his father's induction into the Order of the Dragon, the family gained the honorary surname Dracul.",
-    pic1 : "",
-    pic2 : ""
+    image : "draculaOrigin",
   },
 
   {
@@ -68,8 +63,7 @@ var questions = [
     choice4 : "Firestarter",
     answer : "choice1",
     funFact : "To this day, Stephen King is quite vocal about his dislike for 'The Shining', which is commonly regarded as one of the greatest movies ever made.",
-    pic1 : "",
-    pic2 : ""
+    image : "kingWork",
   },
 
   {
@@ -80,8 +74,7 @@ var questions = [
     choice4 : "poliziotteschi",
     answer : "choice3",
     funFact : "The word 'giallo' is Italian for 'yellow'. The term derives from a series of cheap paperback mystery novels with yellow covers that were popular in post-fascist Italy.",
-    pic1 : "",
-    pic2 : ""
+    image : "italianGenre",
   },
 
   {
@@ -92,20 +85,18 @@ var questions = [
     choice4 : "being passed up for the role of Freddy Krueger",
     answer : "choice2",
     funFact : "Bill Paxton was the sole actor with this distinction until the filming of 'Alien vs. Predator' in 2004.",
-    pic1 : "",
-    pic2 : ""
+    image : "lanceBill",
   }, 
 
   {
-    question : "In the original 'Psycho', interior scenes of the Bates house were shot on the old sets of what other classic movie?",
+    question : "In the original 'Psycho', interior scenes of the Bates house were shot on the old stage of what other classic movie?",
     choice1 : "'Rear Window'",
     choice2 : "'The Phantom of the Opera'",
     choice3 : "'The Pit and the Pendulum'",
     choice4 : "'Frankenstein'",
     answer : "choice2",
-    funFact : "The Bates house did not actually exist; only two sides of the exterior are visible in the movie, and they were false facades.",
-    pic1 : "",
-    pic2 : ""
+    funFact : "The Bates house did not actually exist; only two sides of the exterior are visible in the movie, and they were false facades. Interiors were shot on Stage 28, originally built for 'Phantom' (1925) and later used for 'Dracula' (1931) and 'The Fast and the Furious' (2001).",
+    image : "batesHouse",
   },
 
   {
@@ -116,8 +107,7 @@ var questions = [
     choice4 : "He didn't write it",
     answer : "choice1",
     funFact : "Carpenter named many of the film's characters after friends and influences, like Dr. Sam Loomis, whose namesake was a character in 'Psycho'. (The latter Loomis's girlfriend Marion, famously killed in the shower, was played by the mother of Jamie Lee Curtis, the star of 'Halloween'.) ",
-    pic1 : "",
-    pic2 : ""
+    image : "halloweenScript",
   },
 
   {
@@ -128,8 +118,7 @@ var questions = [
     choice4 : "Music",
     answer : "choice4",
     funFact : "Carpenter completed the musical score for 'Halloween' by himself in only three days.",
-    pic1 : "",
-    pic2 : ""
+    image : "carpenterDirect",
   },
 
   {
@@ -140,8 +129,7 @@ var questions = [
     choice4 : "'Nightbreed'",
     answer : "choice4",
     funFact : "Cronenberg's own film 'Videodrome' is paid tribute to at the end of 'Nightbreed', when his character is revived by a hand thrust into his stomach.",
-    pic1 : "",
-    pic2 : ""
+    image : "cliveDavid",
   },
 
   {
@@ -149,11 +137,10 @@ var questions = [
     choice1 : "melted mint ice cream",
     choice2 : "a mixture of water-based paint and gelatin",
     choice3 : "watered down Play-Doh",
-    choice4 : "split pea soup",
+    choice4 : "pea soup",
     answer : "choice4",
-    funFact : "",
-    pic1 : "",
-    pic2 : ""
+    funFact : "The pea soup was mixed with a little oatmeal. Apparently the crew preferred Andersen's brand, as Campbell's didn't work as well.",
+    image : "vomit",
   }
 
   // {
@@ -164,8 +151,7 @@ var questions = [
   //   choice4 : "",
   //   answer : "",
   //   funFact : "During production, the refrigerator containing the animal guts was left unplugged over the weekend, and the zombie cast was forced to act with (and simulate eating) rotting meat.",
-  //   pic1 : "",
-  //   pic2 : ""
+  //   image : "",
   // },
 
   // {
@@ -176,8 +162,7 @@ var questions = [
   //   choice4 : "",
   //   answer : "",
   //   funFact : "",
-  //   pic1 : "",
-  //   pic2 : ""
+  //   image : "",
   // }
 ];
 
@@ -192,7 +177,6 @@ var questions = [
 //     choice4 : "",
 //     answer : "",
 //     funFact : "",
-//     pic1 : "",
-//     pic2 : ""
+//     image : "",
 //   },
 // ];

@@ -1,3 +1,5 @@
+// ToDo: remove .hidden, adjust #newGame
+
 // $(function() { // begin ready() on document load
 
   var usedQuestions = [];
@@ -7,6 +9,7 @@
   var questionsAsked;
   var questionsCorrect;
   var intervalId;
+  var questionTime = 99;
   var timeLimit;
   var answerPicked;
 
@@ -48,12 +51,6 @@
     playRound();
   };
 
-  function refreshDisplay(currentQuestion) {
-    console.log("refreshDisplay() executing");
-    $("#currentQuestion").text(currentQuestion.question);
-    $("#questionCount").text(questionsCorrect + " / " + questionsAsked);
-  }
-
   function pickQuestion() {
     qIndex = (Math.floor(Math.random() * questions.length));
     if (usedQuestions.indexOf(qIndex) === -1) {
@@ -68,7 +65,6 @@
     return qIndex;
   };
   
-  
   function newGameScreen() {
     console.log("newGameScreen() executing");
     $("#newGame").toggleClass("hidden");
@@ -79,6 +75,7 @@
     console.log("askQuestion() executing");
     $("#currentQuestion").remove();
     $("#choiceArea").remove();
+    $(".flavorImage").remove();
     currentQuestion = questions[pickQuestion()];
     var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+currentQuestion.choice1+"</p>");
     var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+currentQuestion.choice2+"</p>");
@@ -88,10 +85,10 @@
     $("#playArea").append("<p id='currentQuestion'>" + currentQuestion.question);
     $("#playArea").append("<div id='choiceArea'>");
     $("#choiceArea").append(c1, c2, c3, c4);
-    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].pic1+".jpg' alt='pic1.jpg'>");
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"1.jpg' alt='image1.jpg'>");
     questionsAsked++;
     answerPicked = false;
-    timeLimit = 7;
+    timeLimit = questionTime;
     answerTimer();
   };
   
@@ -112,11 +109,10 @@
       $("#" + questions[qIndex].answer).append("<div class='incorrectResult'>");
     };
     $(".flavorImage").remove();
-    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].pic2+".jpg' alt='pic2.jpg'>");
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"2.jpg' alt='image2.jpg'>");
     $("#choiceArea").append("<p class='funFact'>" + questions[qIndex].funFact);
     $("#questionCount").text(questionsCorrect + " / " + questionsAsked);
     clearInterval(intervalId);
-    timeLimit = 10;
     roundTimer();
   };
 

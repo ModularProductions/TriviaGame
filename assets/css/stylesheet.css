@@ -60,7 +60,9 @@ body {
   margin: 10px;
   overflow: auto;
   position: relative;
-  min-height: 60px;
+  height: 80px;
+  line-height: 1.5em;
+
 }
 
 .choice p {
@@ -89,10 +91,9 @@ body {
   background-color: green;
 }
 
-#flavorImage {
+.flavorImage {
   margin: 10px;
-  background-color: blue;
-  border: solid 1px red;
+  width: 250px;
   clear: both;
 }
 
