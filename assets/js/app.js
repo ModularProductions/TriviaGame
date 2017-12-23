@@ -3,7 +3,6 @@ $(function() { // begin ready() on document load
   var usedQuestions = [];
   var questionLimit = 10;
   var qIndex;
-  var currentQuestion;
   var questionsAsked;
   var questionsCorrect;
   var intervalId;
@@ -61,32 +60,30 @@ $(function() { // begin ready() on document load
       usedQuestions.push(qIndex);
       console.log("adding new qIndex to usedQuestions[]")
       return qIndex;
-    } 
-    else {
+    } else {
       console.log("rejecting new qIndex, executing pickQuestion() to find another");
       pickQuestion();
     };
     return qIndex;
   };
   
-  function askQuestion(currentQuestion) {
+  function askQuestion() {
     console.log("askQuestion() executing");
     $("h1").siblings().remove();
-    currentQuestion = questions[pickQuestion()];
-    var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+currentQuestion.choice1+"</p>");
-    var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+currentQuestion.choice2+"</p>");
-    var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+currentQuestion.choice3+"</p>");
-    var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+currentQuestion.choice4+"</p>");
+    pickQuestion();
+    var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+questions[qIndex].choice1+"</p>");
+    var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+questions[qIndex].choice2+"</p>");
+    var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+questions[qIndex].choice3+"</p>");
+    var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+questions[qIndex].choice4+"</p>");
     questionsAsked++;
     $("#playArea").append("<p class='questionNumber'>Question "+questionsAsked+" / "+questionLimit);
     $("#playArea").append("<p class='textArea'>");
-    $(".textArea").html(currentQuestion.question);
+    $(".textArea").html(questions[qIndex].question);
     $("#playArea").append("<p class='timeRemaining'>");
     $("#playArea").append("<div id='choiceArea'>");
     $("#choiceArea").append(c1, c2, c3, c4);
     $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"1.jpg' alt='image1.jpg'>");
     $(".choice").on("click", pickAnswer);    
-    answerPicked = false;
     timeLimit = questionTime;
     answerTimer();
   };

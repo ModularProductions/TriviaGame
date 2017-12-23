@@ -141,29 +141,29 @@ var questions = [
     answer : "choice4",
     funFact : "The pea soup was mixed with a little oatmeal. Apparently the crew preferred Andersen's brand, as Campbell's didn't work as well.",
     image : "vomit",
-  }
+  },
 
-  // {
-  //   question : "",
-  //   choice1 : "",
-  //   choice2 : "",
-  //   choice3 : "",
-  //   choice4 : "",
-  //   answer : "",
-  //   funFact : "During production, the refrigerator containing the animal guts was left unplugged over the weekend, and the zombie cast was forced to act with (and simulate eating) rotting meat.",
-  //   image : "",
-  // },
+  {
+    question : "Who's this sociable zombie from <i>Day of the Dead</i>?",
+    choice1 : "Bob",
+    choice2 : "Bub",
+    choice3 : "Bill",
+    choice4 : "Carl",
+    answer : "choice2",
+    funFact : "Bub is the only zombie to have a line of dialogue in any of George Romero's <i>Dead</i> movies. He is coaxed into saying 'Hello Aunt Alicia'.",
+    image : "whoDead",
+  },
 
-  // {
-  //   question : "",
-  //   choice1 : "",
-  //   choice2 : "",
-  //   choice3 : "",
-  //   choice4 : "",
-  //   answer : "",
-  //   funFact : "",
-  //   image : "",
-  // }
+  {
+    question : "What movie features special-effects wizard Tom Savini acting as 'Sex Machine'?",
+    choice1 : "<i>Dawn of the Dead</i>",
+    choice2 : "<i>Frankenhooker</i>",
+    choice3 : "<i>Machete</i>",
+    choice4 : "<i>From Dusk till Dawn</i>",
+    answer : "choice4",
+    funFact : "<i>From Dusk till Dawn</i> was the first script Quentin Tarantino had gotten paid to write, for the amount of $1,500. He was asked to write it by Robert Kurtzman, the FX technician who provided the ear-slicing scene in <i>Reservoir Dogs</i>.",
+    image : "saviniSex",
+  },
 ];
 
 
