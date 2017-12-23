@@ -18,7 +18,7 @@ var questions = [
     choice3 : "The Omen",
     choice4 : "The Exorcist",
     answer : "choice4",
-    funFact : "'The Exorcist' earned 10 Oscar nominations in 1975, including a Best Supporting Acress nod for 15-year-old Linda Blair.",
+    funFact : "'The Exorcist' earned 10 Oscar nominations in 1975, including a Best Supporting Actress nod for 15-year-old Linda Blair.",
     image : "horrorAcademy",
   },
 

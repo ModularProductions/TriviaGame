@@ -11,20 +11,19 @@ html, body {
   line-height: 175%;
   margin: 0;
   color: #ddd;
-  min-width: 500px;
 }
   
 body {
   background-color: #444;
   padding: 30px;
   overflow: auto;
+  /* min-width: 720px; */
 }
 
 #playArea {
   background-color: #222;
   margin: 0 auto;
-  text-align: center;
-  padding: 20px;
+  padding: 30px;
   overflow: auto;
   min-height: 600px;
 }
@@ -34,41 +33,40 @@ body {
   margin-bottom: 15px;
 }
 
-#timeRemaining {
-
+.questionNumber, .timeRemaining {
+  text-align: center;
+  font-size: 75%;
 }
 
-#questionCount {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-}
-
-#currentQuestion {
+.textArea {
   padding: 15px;
   font-size: 24px;
+  text-align: center;
+  margin: -20px;
 }
 
 #choiceArea {
-  display: inline-block;
-  width: 60%;
-  min-width: 400px;
+  display: inline-block;  
+  width: 100%;
+  /* width: calc(100% - 400px); */
+  /* min-width: 400px; */
 }
 
 .choice {
   border: 1px red solid;
-  margin: 10px;
+  margin: 10px 0px;
   overflow: auto;
-  position: relative;
-  height: 80px;
+  /* height: 90px; */
   line-height: 1.5em;
-
+  position: relative;
+  text-align: center;
 }
 
 .choice p {
   margin: 5px 80px 5px 80px;
   font-size: 125%;
   padding: 10px;
+  vertical-align: middle;
 }
 
 .incorrectResult {
@@ -77,7 +75,6 @@ body {
   left: 0px;
   height: 50px;
   width: 75px;
-  margin-top: 5px;
   background-color: red;
 }
 
@@ -87,29 +84,23 @@ body {
   left: 0px;
   height: 50px;
   width: 75px;
-  margin-top: 5px;
   background-color: green;
 }
 
 .flavorImage {
-  margin: 10px;
-  width: 250px;
-  clear: both;
+  display: inline-block;
+  /* height: 400px; */
+  width: 100%;
+  vertical-align: top;
 }
 
 #newGame {
-  margin: 30px auto;
-  width: 300px;
-  height: 200px;
+  /* width: 300px; */
+  /* height: 200px; */
   background-color: black;
   border: 1px solid red;
-  padding: 60px;
-}
-
-.hidden {
-  visibility: hidden;
-  position: fixed;
-  top: -500px;
+  padding: 60px 20%;
+  text-align: center;
 }
 
 p {
@@ -123,8 +114,11 @@ a {
 h1 {
   font-family: 'Nosifer', cursive;
   font-size: 30px;
-  color: #ddd;
+  color: black;
   margin: 15px;
+  text-align: center;
+  text-shadow: 0px 3px 3px #990000, 0 6px #660000, 0px -1px red;
+  /* text-shadow: 0px 4px 3px red; */
 }
 
 h2 {
@@ -178,7 +172,7 @@ footer {
 @media screen and (min-width: 600px) {
   #flavorImage {
     float: right;
-    width: 30%;
+    /* width: 30%; */
   }
 }
 
