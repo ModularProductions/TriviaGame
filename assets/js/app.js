@@ -1,5 +1,3 @@
-// ToDo: remove .hidden, adjust #newGame
-
 $(function() { // begin ready() on document load
 
   var usedQuestions = [];
@@ -9,8 +7,8 @@ $(function() { // begin ready() on document load
   var questionsAsked;
   var questionsCorrect;
   var intervalId;
-  var questionTime = 999;
-  var questionDelay = 10;
+  var questionTime = 20;
+  var questionDelay = 15;
   var timeLimit = questionTime;
   var answerPicked;
 
@@ -126,7 +124,10 @@ $(function() { // begin ready() on document load
 
   function endGame() {
     $("h1").siblings().remove();
-    $("#playArea").append("<p class='endGame'>You answered "+questionsCorrect+" out of "+questionsAsked+"questions correctly!");
+    var end1 = $("<p>").text("You answered "+questionsCorrect+" out of "+questionsAsked+" questions correctly!");
+    var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
+    var end2 = $("<p>").text("Thanks for playing! Click anywhere to try again!");
+    $("<div id='endScreen'>").append(end1, endImage, end2).appendTo("#playArea");
     $("body").on("click", startGame);
   }
 
@@ -151,8 +152,3 @@ $(function() { // begin ready() on document load
   $("body").on("click", startGame);
 
 }); // end ready() on document load
-
-// click to start, start timer
-// when either time runs out or question is selected
-//  reset timer (not the interval), and load next question
-// repeat until you have no more questions (use ifs to check)
