@@ -30,7 +30,7 @@ $(function() { // begin ready() on document load
     console.log("executing answerTimeUp()");
     $(".choice").off("click", pickAnswer);
     clearInterval(intervalId);
-    endOfQuestion();
+    endOfQuestion(false);
   };
   
   function roundTimer() {
@@ -101,23 +101,29 @@ $(function() { // begin ready() on document load
   };
   
   function endOfQuestion(answerPicked) {
-    console.log("endOfQuestion() executing");
-    $(".notpicked").remove();
-    $("#" + answerPicked).append("<div class='incorrectFlag' style='left:0'>");
-    $("#" + answerPicked).append("<div class='incorrectFlag' style='right:0'>");
-    $(".correct").append("<div class='correctFlag' style='left:0'>");
-    $(".correct").append("<div class='correctFlag' style='right:0'>");
+    console.log("endOfQuestion() executing, answerPicked = ", answerPicked);
+    if (answerPicked === false) {        
+      $("#"+questions[qIndex].answer).append("<div class='incorrectFlag' style='left:0'>");
+      $("#"+questions[qIndex].answer).append("<div class='incorrectFlag' style='right:0'>");
+      $("#"+questions[qIndex].answer).siblings().remove();
+      $("#choiceArea").prepend("<p class='incorrectAlert'>You ran out of time!");
+    } else {
+      if (answerPicked === questions[qIndex].answer) {
+        questionsCorrect++;
+        $("#choiceArea").prepend("<p class='correctAlert'>Correct!");
+      } else {
+        $("#choiceArea").prepend("<p class='incorrectAlert'>Wrong!");
+      };
+      $(".notpicked").remove();
+      $("#" + answerPicked).append("<div class='incorrectFlag' style='left:0'>");
+      $("#" + answerPicked).append("<div class='incorrectFlag' style='right:0'>");
+      $(".correct").append("<div class='correctFlag' style='left:0'>");
+      $(".correct").append("<div class='correctFlag' style='right:0'>");
+    };
     $(".flavorImage").remove();
-    $("#textArea").remove();    
     $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"2.jpg' alt='image2.jpg'>");
     $(".textArea").html(questions[qIndex].funFact);
     clearInterval(intervalId);
-    if (answerPicked === questions[qIndex].answer) {
-      questionsCorrect++;
-      $("#choiceArea").prepend("<p class='correctAlert'>Correct!");
-    } else {
-      $("#choiceArea").prepend("<p class='incorrectAlert'>Wrong!");
-    };
     timeLimit = questionDelay;
     roundTimer();
   };
