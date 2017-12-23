@@ -12,91 +12,101 @@ html, body {
   margin: 0;
   color: #ddd;
 }
-  
+
 body {
-  background-color: #444;
-  padding: 30px;
+  background-image: url("../images/background.png");
+  background-size: auto;
   overflow: auto;
-  /* min-width: 720px; */
 }
 
 #playArea {
-  background-color: #222;
   margin: 0 auto;
+  height: 100%;
   padding: 30px;
   overflow: auto;
   min-height: 600px;
 }
 
-#numbers {
-  position: relative;
-  margin-bottom: 15px;
-}
-
 .questionNumber, .timeRemaining {
   text-align: center;
-  font-size: 75%;
+  font-size: 80%;
 }
 
 .textArea {
-  padding: 15px;
+  padding: 10px 0;
   font-size: 24px;
   text-align: center;
-  margin: -20px;
+  min-height: 3em;
 }
 
 #choiceArea {
   display: inline-block;  
   width: 100%;
-  /* width: calc(100% - 400px); */
-  /* min-width: 400px; */
 }
 
 .choice {
   border: 1px red solid;
+  padding: 0 12%;
   margin: 10px 0px;
   overflow: auto;
-  /* height: 90px; */
   line-height: 1.5em;
   position: relative;
   text-align: center;
+  background-color: #222;
 }
 
 .choice p {
-  margin: 5px 80px 5px 80px;
+  margin: 5px 5px 5px 805pxpx;
   font-size: 125%;
   padding: 10px;
   vertical-align: middle;
 }
 
-.incorrectResult {
+.correctAlert {
+  color: green;
+  text-shadow: 0px 0px 6px #008800;
+  font-size: 150%;
+  text-align: center;
+}
+
+.incorrectAlert {
+  color: red;
+  text-shadow: 0px 1px 1px #990000, 0 3px #660000, 0px -1px red;
+  /* text-shadow: 0px 4px 3px red; */
+  font-size: 150%;
+  text-align: center;
+}
+
+.incorrectFlag {
   position: absolute;
   top: 0px;
-  left: 0px;
-  height: 50px;
-  width: 75px;
+  height: 100%;
+  width: 12%;
   background-color: red;
 }
 
-.correctResult {
+.correctFlag {
   position: absolute;
   top: 0px;
-  left: 0px;
-  height: 50px;
-  width: 75px;
+  height: 100%;
+  width: 12%;
   background-color: green;
 }
 
 .flavorImage {
   display: inline-block;
-  /* height: 400px; */
+  padding: 10px;
+  margin: 8px auto;
   width: 100%;
   vertical-align: top;
+  background-color: #333333;
+  border: 2px black solid;
 }
 
 #newGame {
   /* width: 300px; */
   /* height: 200px; */
+  margin-top: 25%;
   background-color: black;
   border: 1px solid red;
   padding: 60px 20%;
@@ -107,82 +117,43 @@ p {
   font-size: 150%;
 }
 
+i {
+  font-style: italic;
+}
+
 a {
   
 }
 
 h1 {
   font-family: 'Nosifer', cursive;
-  font-size: 30px;
+  font-size: 5vw;
   color: black;
-  margin: 15px;
+  margin: 15px 0 3vw;
   text-align: center;
+  width: 100%;
   text-shadow: 0px 3px 3px #990000, 0 6px #660000, 0px -1px red;
   /* text-shadow: 0px 4px 3px red; */
 }
 
-h2 {
-
-}
-
-ul {
-
-}
-
-li {
-  list-style: none;
-  display: inline-block;
-}
-
-input[type=text], input[type=email], textarea {
-
-}
-
-input[type=submit] {
-
-}
-
-#wrap {
-  min-height: 100%;
-}
-
-#content {
-  padding-bottom: 70px; /* your footer height */
-}
-
-header {
-
-}
-
-nav {
-
-}
-
-section {
-
-}
-
-footer {
-  height: 70px; /* your footer height */
-  margin-top: -70px; /* your footer height as negative amount */
-  overflow: hidden;
-}
-
 /* Tablet Portrait */
 @media screen and (min-width: 600px) {
-  #flavorImage {
+  .flavorImage {
     float: right;
-    /* width: 30%; */
+    width: 32%;
+  }
+
+  #choiceArea {
+    width: 62%;
   }
 }
 
-#choiceArea {
-
-}
 
 /* Tablet Landscape */
-@media screen and (min-width: 900px) {
-
+@media screen and (min-width: 1024px) {
+  body {
+    background-size: 100%;
+  }
 }
 
 /* Desktop */
