@@ -3,14 +3,12 @@ $(function() { // begin ready() on document load
   var usedQuestions = [];
   var questionLimit = 10;
   var qIndex;
-  var questionsAsked;
-  var questionsCorrect;
   var intervalId;
   var questionTime = 20;
   var roundDelay = 10;
   var timeLimit = questionTime;
   var answerPicked;
-  var finalScore = $("<div id='finalScore'>");
+  var score = $("<div id='score'>");
 
   function answerDecrement() {
     timeLimit--;
@@ -76,8 +74,7 @@ $(function() { // begin ready() on document load
     var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+questions[qIndex].choice2+"</p>");
     var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+questions[qIndex].choice3+"</p>");
     var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+questions[qIndex].choice4+"</p>");
-    questionsAsked++;
-    $("#playArea").append("<p class='questionNumber'>Question "+questionsAsked+" / "+questionLimit);
+    $("#playArea").append("<p class='questionNumber'>Question "+(score.children().length + 1)+" / "+questionLimit);
     $("#playArea").append("<p class='textArea'>");
     $(".textArea").html(questions[qIndex].question);
     $("#playArea").append("<p class='timeRemaining'>");
@@ -104,17 +101,15 @@ $(function() { // begin ready() on document load
       $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
       $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullright.png' class='flag' style='right:0'>");
       $("#"+questions[qIndex].answer).siblings().remove();
-      $(finalScore).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
+      $(score).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
       $("#choiceArea").prepend("<p class='incorrectAlert'>You ran out of time!");
     } else {
       if (answerPicked === questions[qIndex].answer) {
-        questionsCorrect++;
         $("#choiceArea").prepend("<p class='correctAlert'>Correct!");
-        $(finalScore).prepend("<img src='assets/images/greenskullleft.png' style='width: calc(80% / "+questionLimit+")'>");
-
+        $(score).prepend("<img src='assets/images/greenskullleft.png' class='point' style='width: calc(80% / "+questionLimit+")'>");
       } else {
         $("#choiceArea").prepend("<p class='incorrectAlert'>Wrong!");
-        $(finalScore).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
+        $(score).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
       };
       $(".notpicked").remove();
       $("#" + answerPicked).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
@@ -132,17 +127,17 @@ $(function() { // begin ready() on document load
 
   function endGame() {
     $("h1").siblings().remove();
-    var end1 = $("<p>").text("You answered "+questionsCorrect+" out of "+questionsAsked+" questions correctly!");
+    var end1 = $("<p>").text("You answered "+score.children(".point").length+" out of "+score.children().length+" questions correctly!");
     var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
     var end2 = $("<p>").text("Thanks for playing! Click anywhere to try again!");
-    $("<div id='endScreen'>").append(end1, finalScore, endImage, end2).appendTo("#playArea");
+    $("<div id='endScreen'>").append(end1, score, endImage, end2).appendTo("#playArea");
     $("body").on("click", startGame);
   }
 
   function playRound() {
     console.log("playRound() executing");
-    if (questionsAsked < questionLimit) {
-      console.log("questionsAsked: ", questionsAsked);
+    if (score.children().length < questionLimit) {
+      console.log("points scored: "+score.children(".point").length);
       askQuestion(qIndex);
     } else endGame();
   };
@@ -151,10 +146,8 @@ $(function() { // begin ready() on document load
     console.log("startGame() executing");
     $("#newGame").remove();
     $("body").off("click", startGame);
-    questionsCorrect = 0;
     usedQuestions = [];
-    questionsAsked = 0;
-    finalScore.empty();
+    score.empty();
     playRound();
   };
 
