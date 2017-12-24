@@ -12,7 +12,7 @@ var questions = [
   },
 
   {
-    question : "What was the first horror film to be nominated for an Academy Award for Best picture?",
+    question : "What was the first horror film to be nominated for an Academy Award for Best Picture?",
     choice1 : "Jaws",
     choice2 : "Psycho",
     choice3 : "The Omen",
