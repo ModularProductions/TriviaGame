@@ -44,17 +44,22 @@ body {
 }
 
 .choice {
-  border: 1px red solid;
-  padding: 0 12%;
+  border: 1px #555 solid;
+  width: 100%;
+  padding: 0 70px;
+  min-height: 80px;
   margin: 10px 0px;
   overflow: auto;
   line-height: 1.5em;
   position: relative;
   text-align: center;
   background-color: #222;
+  display: table;
+  border-radius: 35px;
 }
 
 .choice p {
+  display: table-cell;
   margin: 5px 5px 5px 805pxpx;
   font-size: 125%;
   padding: 10px;
@@ -75,20 +80,10 @@ body {
   text-align: center;
 }
 
-.incorrectFlag {
+.flag {
   position: absolute;
   top: 0px;
   height: 100%;
-  width: 12%;
-  background-color: red;
-}
-
-.correctFlag {
-  position: absolute;
-  top: 0px;
-  height: 100%;
-  width: 12%;
-  background-color: green;
 }
 
 .flavorImage {
