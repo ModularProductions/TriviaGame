@@ -115,7 +115,8 @@ body {
 }
 
 #newGame {
-  margin-top: 25%;
+  margin: 25% auto;
+  width: 75%;
   background-color: black;
   border: 1px solid red;
   padding: 60px 20%;
@@ -144,7 +145,7 @@ h1 {
 @media screen and (min-width: 600px) {
   .flavorImage {
     float: right;
-    width: 32%;
+    width: 34%;
   }
   
   .finalImage {
@@ -152,7 +153,7 @@ h1 {
   }
 
   #choiceArea {
-    width: 62%;
+    width: 64%;
   }
 }
 

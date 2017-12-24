@@ -35,14 +35,14 @@ $(function() { // begin ready() on document load
   
   function roundTimer() {
     console.log("roundTimer() executed");
-    $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click to continue!");
+    $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
     intervalId = setInterval(roundDecrement, 1000);
     // $("body").on("click", roundTimeUp);    
   };
   
   function roundDecrement() {
     timeLimit--;
-    $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click to continue!");
+    $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
     if (timeLimit === 0) {
       roundTimeUp();
     }
