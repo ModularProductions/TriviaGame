@@ -7,7 +7,7 @@ $(function() { // begin ready() on document load
   var questionsCorrect;
   var intervalId;
   var questionTime = 20;
-  var questionDelay = 1;
+  var roundDelay = 10;
   var timeLimit = questionTime;
   var answerPicked;
   var finalScore = $("<div id='finalScore'>");
@@ -126,7 +126,7 @@ $(function() { // begin ready() on document load
     $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"2.jpg' alt='image2.jpg'>");
     $(".textArea").html(questions[qIndex].funFact);
     clearInterval(intervalId);
-    timeLimit = questionDelay;
+    timeLimit = roundDelay;
     roundTimer();
   };
 
