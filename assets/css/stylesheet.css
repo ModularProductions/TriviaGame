@@ -102,6 +102,9 @@ body {
   text-align: center;
   line-height: 150%;
 }
+#endScreen p {
+  margin-bottom: 15px;
+}
 
 .finalImage {
   padding: 10px;

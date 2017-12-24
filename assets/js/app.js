@@ -7,7 +7,7 @@ $(function() { // begin ready() on document load
   var questionsCorrect;
   var intervalId;
   var questionTime = 20;
-  var questionDelay = 15;
+  var questionDelay = 10;
   var timeLimit = questionTime;
   var answerPicked;
 
@@ -128,9 +128,18 @@ $(function() { // begin ready() on document load
   function endGame() {
     $("h1").siblings().remove();
     var end1 = $("<p>").text("You answered "+questionsCorrect+" out of "+questionsAsked+" questions correctly!");
+    var score = $("<div id='finalScore'>");
     var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
     var end2 = $("<p>").text("Thanks for playing! Click anywhere to try again!");
-    $("<div id='endScreen'>").append(end1, endImage, end2).appendTo("#playArea");
+    $("<div id='endScreen'>").append(end1, score, endImage, end2).appendTo("#playArea");
+    for (i = 0 ; i < questionsCorrect ; i++) {
+      console.log("finalScore green iteration");
+      $("#finalScore").append("<img src='assets/images/greenskullleft.png' style='width: calc(80% / "+questionsAsked+")'>");
+    };
+    for (i = 0 ; i < (questionsAsked - questionsCorrect) ; i++) {
+      console.log("finalScore red iteration");
+      $("#finalScore").append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionsAsked+")'>");
+    };
     $("body").on("click", startGame);
   }
 
