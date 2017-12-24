@@ -7,9 +7,10 @@ $(function() { // begin ready() on document load
   var questionsCorrect;
   var intervalId;
   var questionTime = 20;
-  var questionDelay = 10;
+  var questionDelay = 1;
   var timeLimit = questionTime;
   var answerPicked;
+  var finalScore = $("<div id='finalScore'>");
 
   function answerDecrement() {
     timeLimit--;
@@ -103,13 +104,17 @@ $(function() { // begin ready() on document load
       $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
       $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullright.png' class='flag' style='right:0'>");
       $("#"+questions[qIndex].answer).siblings().remove();
+      $(finalScore).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
       $("#choiceArea").prepend("<p class='incorrectAlert'>You ran out of time!");
     } else {
       if (answerPicked === questions[qIndex].answer) {
         questionsCorrect++;
         $("#choiceArea").prepend("<p class='correctAlert'>Correct!");
+        $(finalScore).prepend("<img src='assets/images/greenskullleft.png' style='width: calc(80% / "+questionLimit+")'>");
+
       } else {
         $("#choiceArea").prepend("<p class='incorrectAlert'>Wrong!");
+        $(finalScore).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
       };
       $(".notpicked").remove();
       $("#" + answerPicked).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
@@ -128,18 +133,9 @@ $(function() { // begin ready() on document load
   function endGame() {
     $("h1").siblings().remove();
     var end1 = $("<p>").text("You answered "+questionsCorrect+" out of "+questionsAsked+" questions correctly!");
-    var score = $("<div id='finalScore'>");
     var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
     var end2 = $("<p>").text("Thanks for playing! Click anywhere to try again!");
-    $("<div id='endScreen'>").append(end1, score, endImage, end2).appendTo("#playArea");
-    for (i = 0 ; i < questionsCorrect ; i++) {
-      console.log("finalScore green iteration");
-      $("#finalScore").append("<img src='assets/images/greenskullleft.png' style='width: calc(80% / "+questionsAsked+")'>");
-    };
-    for (i = 0 ; i < (questionsAsked - questionsCorrect) ; i++) {
-      console.log("finalScore red iteration");
-      $("#finalScore").append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionsAsked+")'>");
-    };
+    $("<div id='endScreen'>").append(end1, finalScore, endImage, end2).appendTo("#playArea");
     $("body").on("click", startGame);
   }
 
@@ -158,6 +154,7 @@ $(function() { // begin ready() on document load
     questionsCorrect = 0;
     usedQuestions = [];
     questionsAsked = 0;
+    finalScore.empty();
     playRound();
   };
 
