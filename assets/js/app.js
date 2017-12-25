@@ -5,7 +5,7 @@ $(function() { // begin ready() on document load
   var questionLimit = 10;
   var intervalId;
   var questionTime = 20;
-  var roundDelay = 1;
+  var roundDelay = 10;
   var timeLimit = questionTime;
   var answerPicked;
   var score = $("<div id='score'>");
