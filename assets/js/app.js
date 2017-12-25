@@ -1,11 +1,11 @@
 $(function() { // begin ready() on document load
 
-  var usedQuestions = [];
+  var pool;
+  var question;
   var questionLimit = 10;
-  var qIndex;
   var intervalId;
   var questionTime = 20;
-  var roundDelay = 10;
+  var roundDelay = 1;
   var timeLimit = questionTime;
   var answerPicked;
   var score = $("<div id='score'>");
@@ -47,64 +47,51 @@ $(function() { // begin ready() on document load
   };
 
   function roundTimeUp() {
-    console.log("executing roundTimeUp()");
+    console.log("roundTimeUp() executing");
     // $("body").off("click", roundTimeUp);          
     clearInterval(intervalId);
     playRound();
   };
-  
-  function pickQuestion() {
-    qIndex = (Math.floor(Math.random() * questions.length));
-    if (usedQuestions.indexOf(qIndex) === -1) {
-      usedQuestions.push(qIndex);
-      console.log("adding new qIndex to usedQuestions[]")
-      return qIndex;
-    } else {
-      console.log("rejecting new qIndex, executing pickQuestion() to find another");
-      pickQuestion();
-    };
-    return qIndex;
-  };
-  
-  function askQuestion() {
+
+  function askQuestion(pool) {
     console.log("askQuestion() executing");
     $("h1").siblings().remove();
-    pickQuestion();
-    var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+questions[qIndex].choice1+"</p>");
-    var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+questions[qIndex].choice2+"</p>");
-    var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+questions[qIndex].choice3+"</p>");
-    var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+questions[qIndex].choice4+"</p>");
+    question = pool.splice((Math.floor(Math.random() * pool.length)), 1)[0];
+    var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+question.choice1+"</p>");
+    var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+question.choice2+"</p>");
+    var c3 = $("<div id='choice3'>").addClass("choice").html("<p>"+question.choice3+"</p>");
+    var c4 = $("<div id='choice4'>").addClass("choice").html("<p>"+question.choice4+"</p>");
     $("#playArea").append("<p class='questionNumber'>Question "+(score.children().length + 1)+" / "+questionLimit);
     $("#playArea").append("<p class='textArea'>");
-    $(".textArea").html(questions[qIndex].question);
+    $(".textArea").html(question.question);
     $("#playArea").append("<p class='timeRemaining'>");
     $("#playArea").append("<div id='choiceArea'>");
     $("#choiceArea").append(c1, c2, c3, c4);
-    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"1.jpg' alt='image1.jpg'>");
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+question.image+"1.jpg' alt='image1.jpg'>");
     $(".choice").on("click", pickAnswer);    
     timeLimit = questionTime;
     answerTimer();
   };
   
   function pickAnswer() {
-    console.log("pickAnswer() executing, this: ", this);
+    console.log("pickAnswer() executing");
     $(this).siblings().addClass("notpicked");
-    $("#" + questions[qIndex].answer).addClass("correct").removeClass("notpicked");
+    $("#" + question.answer).addClass("correct").removeClass("notpicked");
     answerPicked = this.id;
     $(".choice").off("click", pickAnswer);
     endOfQuestion(answerPicked);
   };
   
   function endOfQuestion(answerPicked) {
-    console.log("endOfQuestion() executing, answerPicked = ", answerPicked);
+    console.log("endOfQuestion() executing");
     if (answerPicked === false) {        
-      $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
-      $("#"+questions[qIndex].answer).append("<img src='assets/images/redskullright.png' class='flag' style='right:0'>");
-      $("#"+questions[qIndex].answer).siblings().remove();
+      $("#"+question.answer).append("<img src='assets/images/redskullleft.png' class='flag' style='left:0'>");
+      $("#"+question.answer).append("<img src='assets/images/redskullright.png' class='flag' style='right:0'>");
+      $("#"+question.answer).siblings().remove();
       $(score).append("<img src='assets/images/redskullright.png' style='width: calc(80% / "+questionLimit+")'>");
       $("#choiceArea").prepend("<p class='incorrectAlert'>You ran out of time!");
     } else {
-      if (answerPicked === questions[qIndex].answer) {
+      if (answerPicked === question.answer) {
         $("#choiceArea").prepend("<p class='correctAlert'>Correct!");
         $(score).prepend("<img src='assets/images/greenskullleft.png' class='point' style='width: calc(80% / "+questionLimit+")'>");
       } else {
@@ -118,14 +105,15 @@ $(function() { // begin ready() on document load
       $(".correct").append("<img src='assets/images/greenskullright.png' class='flag' style='right:0'>");
     };
     $(".flavorImage").remove();
-    $("#playArea").append("<img class='flavorImage' src='assets/images/"+questions[qIndex].image+"2.jpg' alt='image2.jpg'>");
-    $(".textArea").html(questions[qIndex].funFact);
+    $("#playArea").append("<img class='flavorImage' src='assets/images/"+question.image+"2.jpg' alt='image2.jpg'>");
+    $(".textArea").html(question.funFact);
     clearInterval(intervalId);
     timeLimit = roundDelay;
     roundTimer();
   };
 
   function endGame() {
+    console.log("endGame() executing");
     $("h1").siblings().remove();
     var end1 = $("<p>").text("You answered "+score.children(".point").length+" out of "+score.children().length+" questions correctly!");
     var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
@@ -137,8 +125,7 @@ $(function() { // begin ready() on document load
   function playRound() {
     console.log("playRound() executing");
     if (score.children().length < questionLimit) {
-      console.log("points scored: "+score.children(".point").length);
-      askQuestion(qIndex);
+      askQuestion(pool);
     } else endGame();
   };
 
@@ -146,7 +133,7 @@ $(function() { // begin ready() on document load
     console.log("startGame() executing");
     $("#newGame").remove();
     $("body").off("click", startGame);
-    usedQuestions = [];
+    pool = questions.slice();
     score.empty();
     playRound();
   };
