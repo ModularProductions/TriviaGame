@@ -33,14 +33,13 @@ $(function() { // begin ready() on document load
   
   function roundTimer() {
     console.log("roundTimer() executed");
-    $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
+    $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
     intervalId = setInterval(roundDecrement, 1000);
-    // $("body").on("click", roundTimeUp);    
   };
   
   function roundDecrement() {
     timeLimit--;
-    $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
+    $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
     if (timeLimit === 0) {
       roundTimeUp();
     }
@@ -48,12 +47,12 @@ $(function() { // begin ready() on document load
 
   function roundTimeUp() {
     console.log("roundTimeUp() executing");
-    // $("body").off("click", roundTimeUp);          
+    $("#next").off("click", roundTimeUp);          
     clearInterval(intervalId);
     playRound();
   };
 
-  function askQuestion(pool) {
+  function askQuestion() {
     console.log("askQuestion() executing");
     $("h1").siblings().remove();
     question = pool.splice((Math.floor(Math.random() * pool.length)), 1)[0];
@@ -110,6 +109,7 @@ $(function() { // begin ready() on document load
     clearInterval(intervalId);
     timeLimit = roundDelay;
     roundTimer();
+    $(".timeRemaining").on("click", roundTimeUp);
   };
 
   function endGame() {
@@ -125,7 +125,7 @@ $(function() { // begin ready() on document load
   function playRound() {
     console.log("playRound() executing");
     if (score.children().length < questionLimit) {
-      askQuestion(pool);
+      askQuestion();
     } else endGame();
   };
 
