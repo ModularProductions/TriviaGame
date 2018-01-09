@@ -28,22 +28,20 @@ function answerTimeUp() {
 };
 
 function roundTimer() {
-  $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
-  // $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
+  $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
   intervalId = setInterval(roundDecrement, 1000);
 };
 
 function roundDecrement() {
   timeLimit--;
-  $(".timeRemaining").text("Next question in " + timeLimit + " seconds!");
-  // $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
+  $(".timeRemaining").text("Next question in " + timeLimit + " seconds, or click here to continue!");
   if (timeLimit === 0) {
     roundTimeUp();
   }
 };
 
 function roundTimeUp() {
-  // $(".timeRemaining").off("click", roundTimeUp);          
+  $(".timeRemaining").off("click", roundTimeUp);          
   clearInterval(intervalId);
   playRound();
 };
@@ -102,7 +100,10 @@ function endOfQuestion(answerPicked) {
   clearInterval(intervalId);
   timeLimit = roundDelay;
   roundTimer();
-  // $(".timeRemaining").on("click", roundTimeUp);
+  $(".timeRemaining").on("click", function(event) {
+    event.stopPropagation();
+    roundTimeUp();
+  });
 };
 
 function endGame() {
