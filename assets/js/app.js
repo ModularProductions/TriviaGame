@@ -41,13 +41,14 @@ function roundDecrement() {
 };
 
 function roundTimeUp() {
-  $(".timeRemaining").off("click", roundTimeUp);          
   clearInterval(intervalId);
   playRound();
 };
 
 function askQuestion() {
   $("h1").siblings().remove();
+  $(".continue").off("click", roundTimeUp); // event listener off
+  $(".timeRemaining").removeClass("continue");  
   question = pool.splice((Math.floor(Math.random() * pool.length)), 1)[0];
   var c1 = $("<div id='choice1'>").addClass("choice").html("<p>"+question.choice1+"</p>");
   var c2 = $("<div id='choice2'>").addClass("choice").html("<p>"+question.choice2+"</p>");
@@ -97,11 +98,12 @@ function endOfQuestion(answerPicked) {
   $(".flavorImage").remove();
   $("#playArea").append("<img class='flavorImage' src='assets/images/"+question.image+"2.jpg' alt='image2.jpg'>");
   $(".textArea").html(question.funFact);
+  $(".timeRemaining").addClass("continue");
   clearInterval(intervalId);
   timeLimit = roundDelay;
   roundTimer();
-  $(".timeRemaining").on("click", function(event) {
-    event.stopPropagation();
+  $(".continue").on("click", function(event) { // event listener on
+    // event.stopPropagation();
     roundTimeUp();
   });
 };
@@ -110,9 +112,9 @@ function endGame() {
   $("h1").siblings().remove();
   var end1 = $("<p>").text("You answered "+score.children(".point").length+" out of "+score.children().length+" questions correctly!");
   var endImage = $("<img class='finalImage' src='assets/images/scarysupper.jpg' alt='image.jpg'>");
-  var end2 = $("<p>").text("Thanks for playing! Click anywhere to try again!");
+  var end2 = $("<p>").text("Thanks for playing! Click here to try again!").addClass("restart");
   $("<div id='endScreen'>").append(end1, score, endImage, end2).appendTo("#playArea");
-  $("body").on("click", startGame);
+  $(".restart").on("click", startGame);
 }
 
 function playRound() {
@@ -124,6 +126,7 @@ function playRound() {
 function startGame() {
   $("#newGame").remove();
   $("body").off("click", startGame);
+  $('.restart').off('click', startGame);
   pool = questions.slice();
   score.empty();
   playRound();
